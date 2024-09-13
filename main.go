@@ -90,11 +90,6 @@ func (m *Methods) GetByID(c *gin.Context) {
 }
 
 func (m *Methods) GetAll(c *gin.Context) {
-	var id string
-	if err := c.ShouldBindQuery(&id); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
 
 	var res []User
 

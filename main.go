@@ -47,6 +47,7 @@ func main() {
 
 	router := gin.Default()
 
+	router.GET("/ping", func(c *gin.Context) { c.JSON(200, gin.H{"pong": "success"}) })
 	router.POST("/register", m.Register)
 	router.GET("/get/:id", m.GetByID)
 	router.GET("/get", m.GetAll)

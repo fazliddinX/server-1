@@ -93,7 +93,7 @@ func (m *Methods) GetAll(c *gin.Context) {
 
 	var res []User
 
-	err := m.db.Select(&res, "select * from users UNION ALL select * from users_server2")
+	err := m.db.Select(&res, "select * from users UNION ALL select * from users")
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		log.Printf("Prepare error: %v", err)

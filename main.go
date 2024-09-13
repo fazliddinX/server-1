@@ -9,7 +9,7 @@ import (
 )
 
 func Connection() (*sqlx.DB, error) {
-	dsn := "host=postgres1 port=5432 user=postgres password=123321 dbname=replica sslmode=disable"
+	dsn := "host=localhost port=5432 user=postgres password=123321 dbname=replica sslmode=disable"
 	db, err := sqlx.Open("postgres", dsn)
 	if err != nil {
 		log.Printf("Error opening database connection: %v", err)
@@ -98,7 +98,7 @@ func (m *Methods) GetAll(c *gin.Context) {
 
 	var res []User
 
-	err := m.db.Select(&res, "select * from users UNION ALL select * from users")
+	err := m.db.Select(&res, "select * from users UNION ALL select * from users_server2")
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		log.Printf("Prepare error: %v", err)
